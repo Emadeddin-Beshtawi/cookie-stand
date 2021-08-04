@@ -11,7 +11,7 @@ body {
 }
 
 a:visited{
-    color: green;
+    color: rgb(232, 7, 253);
 }
 a{
     font-size: 30px;
@@ -60,7 +60,7 @@ table{
 }
 
 button {
-    background-color: #4CAF50; /* Green */
+    background-color: #b8ca18; 
     border: none;
     color: rgb(236, 10, 10);
     padding: 15px 32px;
