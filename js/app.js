@@ -1,8 +1,17 @@
+
 'use strict';
+
 let hours=['6 AM','7 AM','8 AM','9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM','5 PM','6 PM','7 PM','total'];
+
 let tableID=document.getElementById('tableID');
+
 let arrTotal=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
 let totals=0;
+
+let shopArray=[];
+
+let footer = document.createElement('tfoot');
 
 
 
@@ -12,18 +21,20 @@ function randomValue(min,max){
 
 
 
-function Store(location,minCust,maxCust,avgCook){
-  this.location=location;
+function Shop (city, minimumClients, maximumClients, avgPreparing)
+{
 
-  this.minCust=minCust;
+  this.city = city;
 
-  this.maxCust=maxCust;
+  this.minimumClients = minimumClients;
 
-  this.avgCook=avgCook;
+  this.maximumClients = maximumClients;
 
-  this.custPerHour=[];
+  this.avgPreparing = avgPreparing;
 
-  this.cook=[];
+  this.clientsPerHour=[];
+
+  this.prepare=[];
   
   this.total=0;
 }
@@ -32,37 +43,58 @@ function Store(location,minCust,maxCust,avgCook){
 
 
 
-Store.prototype.calccustPerHour=function(){
-  for(let i=0;i<hours.length-1;i++){
-    this.custPerHour.push(randomValue(this.minCust,this.maxCust));
+Shop.prototype.calcclientsPerHour = function()
+{
+  for(let i=0;i<hours.length-1;i++)
+  {
+    this.clientsPerHour.push(randomValue(this.minimumClients,this.maximumClients));
   }
 };
 
 
 
-Store.prototype.calccookPerhour=function(){
-  for(let i=0;i<hours.length-1;i++){
-    this.cook.push(this.custPerHour[i]*Math.floor(this.avgCook));
-    this.total=this.total+this.cook[i];
-    arrTotal[i]=arrTotal[i]+this.cook[i];
+Shop.prototype.calcpreparePerhour = function()
+{
+  for(let i=0;i<hours.length-1;i++)
+  {
+  this.prepare.push(this.clientsPerHour[i]*Math.floor(this.avgPreparing));
+
+    this.total=this.total+this.prepare[i];
+
+    arrTotal[i]=arrTotal[i]+this.prepare[i];
+
   }
-  this.cook[this.cook.length]=this.total;
+
+  this.prepare[this.prepare.length]=this.total;
+
   totals+=this.total;
 };
 
 
 
-Store.prototype.createElement=function(){
+Shop.prototype.createElement=function()
+{
+
   let tableRow=document.createElement('tr');
+
   tableID.appendChild(tableRow);
+
   let tdEl1=document.createElement('td');
+
   tableRow.appendChild(tdEl1);
-  tdEl1.textContent=this.location;
+
+  tdEl1.textContent=this.city;
+
   let tdEl;
-  for (let i=0;i<this.cook.length;i++){
+
+  for (let i=0;i<this.prepare.length;i++)
+
+  {
     tdEl=document.createElement('td');
+
     tableRow.appendChild(tdEl);
-    tdEl.textContent=this.cook[i];
+
+    tdEl.textContent=this.prepare[i];
   }
 };
 
@@ -70,20 +102,32 @@ Store.prototype.createElement=function(){
 
 
 function heading()
+
 {
+
   let thead = document.createElement('thead');
+
   tableID.appendChild(thead);
 
   let tableRow=document.createElement('tr');
+
   thead.appendChild(tableRow);
+
   let tdEl1 = document.createElement('td');
+
   tableRow.appendChild(tdEl1);
-  tdEl1.textContent='stores';
+
+  tdEl1.textContent='Branches';
+
   let thEl;
 
-  for (let i = 0;i<hours.length;i++){
+  for (let i = 0;i<hours.length;i++)
+
+  {
     thEl=document.createElement('th');
+
     tableRow.appendChild(thEl);
+
     thEl.textContent=hours[i];
   }
 }
@@ -91,60 +135,106 @@ function heading()
 
 
 
-function footers(){
+function footers()
+{
+
   let footer = document.createElement('tfoot');
+
   tableID.appendChild(footer);
 
   let tableRow = document.createElement('tr');
   footer.appendChild(tableRow);
 
   let tdEl1 = document.createElement('td');
+
   tableRow.appendChild(tdEl1);
+
   tdEl1.textContent = 'total';
   let tdEl;
 
   for (let i=0; i<hours.length-1; i++){
+
     tdEl=document.createElement('td');
+
     tableRow.appendChild(tdEl);
+
     tdEl.textContent = `${arrTotal[i]}`;
   }
 
   tdEl = document.createElement('td');
+
   tableRow.appendChild(tdEl);
+
   tdEl.textContent=`${totals}`;
 }
+
+
+
+const form =document.getElementById('Branches-Report');
+form.addEventListener('submit',shopes);
+
+function shopes(event){
+  event.preventDefault();
+
+  let shopName = event.target.shopName.value;
+
+  let minimumClients = event.target.minimumClients.value;
+
+  let maximumClients = event.target.maximumClients.value;
+
+  let avgPreparing = event.target.avgPreparing.value;
+// console.log(shopName);
+
+// console.log(minimumClients );
+
+// console.log(maximumClients);
+// console.log(avgPreparing);
+
+
+  let newShop = new Shop(shopName, minimumClients, maximumClients, avgPreparing);
+
+  newShop.calcclientsPerHour();
+  newShop.calcpreparePerhour();
+  newShop.createElement();
+
+  // console.log(newShop);
+
+  tableID.deleteRow(tableID.rows.length-1);
+  footers();
+}
+
+
 
 heading();
 
 
-
-let seattle = new Store('Seattle',23,65,6.3);
-seattle.calccustPerHour();
-seattle.calccookPerhour();
+let seattle = new Shop ('Seattle',23,65,6.3);
+seattle.calcclientsPerHour();
+seattle.calcpreparePerhour();
 seattle.createElement();
 
 
-let tokyo = new Store('Tokyo',3,24,1.2);
-tokyo.calccustPerHour();
-tokyo.calccookPerhour();
+let tokyo = new Shop ('Tokyo',3,24,1.2);
+tokyo.calcclientsPerHour();
+tokyo.calcpreparePerhour();
 tokyo.createElement();
 
 
-let dubai = new Store('Dubai',11,38,3.7);
-dubai.calccustPerHour();
-dubai.calccookPerhour();
+let dubai = new Shop ('Dubai',11,38,3.7);
+dubai.calcclientsPerHour();
+dubai.calcpreparePerhour();
 dubai.createElement();
 
 
-let paris = new Store('Paris',20,38,2.3);
-paris.calccustPerHour();
-paris.calccookPerhour();
+let paris = new Shop ('Paris',20,38,2.3);
+paris.calcclientsPerHour();
+paris.calcpreparePerhour();
 paris.createElement();
 
 
-let lima = new Store('Lima',2,16,4.6);
-lima.calccustPerHour();
-lima.calccookPerhour();
+let lima = new Shop ('Lima',2,16,4.6);
+lima.calcclientsPerHour();
+lima.calcpreparePerhour();
 lima.createElement();
 
 footers();
