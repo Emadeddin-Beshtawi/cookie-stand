@@ -11,7 +11,7 @@ body {
 }
 
 a:visited{
-    color: rgb(232, 7, 253);
+    color: rgb(253, 7, 48);
 }
 a{
     font-size: 30px;
@@ -31,11 +31,11 @@ h2{
 
 
 img{
-    border-radius: 50%;
+    border-radius: 51%;
 }
 th,td{
     padding: 8px;
-    border-bottom: 1px solid cornflowerblue;
+    border-bottom: 1px solid rgb(120, 161, 238);
     background-color:lightgray;
 }
 
@@ -46,7 +46,7 @@ tables{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 button:hover{
-    color: rgb(95, 9, 35);
+    color: rgb(177, 166, 10);
 }
 footer{
     text-align: center;
@@ -62,8 +62,8 @@ table{
 button {
     background-color: #b8ca18; 
     border: none;
-    color: rgb(236, 10, 10);
-    padding: 15px 32px;
+    color: rgb(237, 11, 11);
+    padding: 16px 33px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
