@@ -1,9 +1,9 @@
 'use strict';
 
-let hoursOpen = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-// Seattle
+let hoursOpen = ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM'];
+
 let seattle = {
-    name: 'Seattle',
+    name: 'seattle',
     minPerCus: 23,
     maxPerCus: 65,
     avgCookiePerCus: 6.3,
@@ -58,10 +58,10 @@ let SliTotalElement = document.createElement('li');
 seattleulElement.appendChild(SliTotalElement);
 SliTotalElement.textContent = `Total : ${seattle.totalCookies()} cookies`;
 
-// Tokyo 
+
 
 let tokyo = {
-    name: 'Tokyo',
+    name: 'tokyo',
     minPerCus: 3,
     maxPerCus: 24,
     avgCookiePerCus: 1.2,
@@ -115,10 +115,10 @@ let liTotalElement = document.createElement('li');
 ulElement.appendChild(liTotalElement);
 liTotalElement.textContent = `Total : ${tokyo.totalCookies()} cookies`;
 
-// Dubai 
+ 
 
 let dubai = {
-    name: 'Dubai',
+    name: 'dubai',
     minPerCus: 11,
     maxPerCus: 38,
     avgCookiePerCus: 3.7,
@@ -174,9 +174,9 @@ dubailiTotalElement.textContent = `Total : ${dubai.totalCookies()} cookies`;
 
 
 
-// Paris 
+
 let paris = {
-    name: 'Paris',
+    name: 'paris',
     minPerCus: 20,
     maxPerCus: 38,
     avgCookiePerCus: 2.3,
@@ -231,9 +231,8 @@ parisulElement.appendChild(PliTotalElement);
 PliTotalElement.textContent = `Total : ${paris.totalCookies()} cookies`;
 
 
-//Lima 
 let lima= {
-    name: 'Lima',
+    name: 'lima',
     minPerCus: 2,
     maxPerCus: 16,
     avgCookiePerCus: 4.6,
