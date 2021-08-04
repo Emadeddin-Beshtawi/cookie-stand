@@ -1,10 +1,9 @@
 'use strict';
-let hours=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','total'];
+let hours=['6 AM','7 AM','8 AM','9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM','5 PM','6 PM','7 PM','total'];
 let tableID=document.getElementById('tableID');
 let arrTotal=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let totals=0;
 
-//random value generator
 function randomValue(min,max){
   return Math.floor(Math.random()*(max-min+1)+min);
 }
@@ -19,14 +18,12 @@ function Store(location,minCust,maxCust,avgCook){
   this.total=0;
 }
 
-//cust per hour
 Store.prototype.calccustPerHour=function(){
   for(let i=0;i<hours.length-1;i++){
     this.custPerHour.push(randomValue(this.minCust,this.maxCust));
   }
 };
 
-//calcuate the cookie per hour
 Store.prototype.calccookPerhour=function(){
   for(let i=0;i<hours.length-1;i++){
     this.cook.push(this.custPerHour[i]*Math.floor(this.avgCook));
@@ -37,7 +34,6 @@ Store.prototype.calccookPerhour=function(){
   totals+=this.total;
 };
 
-//build table
 Store.prototype.createElement=function(){
   let tableRow=document.createElement('tr');
   tableID.appendChild(tableRow);
@@ -52,7 +48,6 @@ Store.prototype.createElement=function(){
   }
 };
 
-//creat heading
 function heading(){
   let thead=document.createElement('thead');
   tableID.appendChild(thead);
@@ -69,7 +64,6 @@ function heading(){
   }
 }
 
-//creat footer
 function footers(){
   let footer=document.createElement('tfoot');
   tableID.appendChild(footer);
@@ -91,15 +85,14 @@ function footers(){
 
 heading();
 
-//call the elements of objects to the table
 
-let seattle=new Store('seattle',23,65,6.3);
+let seattle=new Store('Seattle',23,65,6.3);
 seattle.calccustPerHour();
 seattle.calccookPerhour();
 seattle.createElement();
 
 
-let tokyo=new Store('tokyo',3,24,1.2);
+let tokyo=new Store('Tokyo',3,24,1.2);
 tokyo.calccustPerHour();
 tokyo.calccookPerhour();
 tokyo.createElement();
@@ -117,7 +110,7 @@ paris.calccookPerhour();
 paris.createElement();
 
 
-let lima=new Store('lima',2,16,4.6);
+let lima=new Store('Lima',2,16,4.6);
 lima.calccustPerHour();
 lima.calccookPerhour();
 lima.createElement();
