@@ -11,7 +11,7 @@ body {
 }
 
 a:visited{
-    color: rgb(253, 7, 48);
+    color: rgb(0, 57, 179);
 }
 a{
     font-size: 30px;
@@ -59,16 +59,16 @@ table{
     border-collapse: collapse;
 }
 
-button {
+/* button {
     background-color: #b8ca18; 
     border: none;
-    color: rgb(237, 11, 11);
+    color: rgb(32, 107, 179);
     padding: 16px 33px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  }
+  } */
   
   nav{
       float: right;
@@ -78,6 +78,33 @@ button {
       list-style-type: circle;
   }
 
+
+  h2 { color: rgba(70, 4, 4, 0.993);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  header{
+    background-color: rgb(129, 78, 6);
+  }
+
+
+  pM {
+    font-family: 'Oswald', sans-serif;
+      display: grid;
+      grid-template-columns: auto auto auto auto auto auto;
+      gap: 20px;
+      color: rgb(54, 1, 1);}
+
+      p{display: inline-block;
+        font-family: 'Oswald', sans-serif;
+      color: gray;
+      }
+
+
+      h3{
+        color: rgb(107, 124, 10);
+        font-family: Arial, Helvetica, sans-serif;
+    
 
 
 
